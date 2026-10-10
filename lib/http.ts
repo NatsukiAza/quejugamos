@@ -31,5 +31,6 @@ export async function orUnconfigured<T>(load: () => Promise<T>): Promise<T | "un
 }
 export function redirectTo(path: string) {
   const origin = (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
-  return NextResponse.redirect(new URL(path, origin));
+  // 303 turns a form POST into a GET on the next page. 307 would submit the form again there.
+  return NextResponse.redirect(new URL(path, origin), 303);
 }
