@@ -4,7 +4,15 @@
     "locale": "Idioma"
   },
   "home": {
-    "lead": "Entrá con Steam, armá una sala y elijan a qué jugar.",
+    "heroTitle": "Elijan a qué jugar juntos",
+    "heroLead": "Entran con Steam, arman una sala de 2 a 8 personas y ven los juegos en común. Después la ruleta o un match de sí y no elige por el grupo.",
+    "stepEnterTitle": "Entrá con Steam",
+    "stepEnterBody": "Tu biblioteca pública se suma sola. Si está privada, la sala sigue y te dice cómo abrirla.",
+    "stepShareTitle": "Compartí el link",
+    "stepShareBody": "Hasta 8 personas. El host también puede pegar un perfil público para sumar esa biblioteca.",
+    "stepDecideTitle": "Giren o matcheen",
+    "stepDecideBody": "La ruleta elige una portada. El match es sí o no, por unanimidad o por mayoría.",
+    "landed": "Salió",
     "create": "Crear sala",
     "library": "Tu biblioteca",
     "empty": "Esta biblioteca pública no tiene juegos.",
@@ -77,6 +85,7 @@
     "empty": "Nada para girar con estos filtros.",
     "allExcluded": "Excluiste todo. Volvé a incluir algún juego.",
     "winner": "Salió",
+    "excludedNotice": "Excluiste {name}. No entra en el próximo giro.",
     "back": "Volver a la sala",
     "pool": "En la ruleta"
   },
@@ -94,7 +103,9 @@
     "empty": "Nada para votar con estos filtros.",
     "back": "Volver a la sala",
     "done": "Ya votaste esta lista.",
-    "card": "{current} de {total}"
+    "card": "{current} de {total}",
+    "hint": "Deslizá a la derecha si lo querés jugar, o a la izquierda si no. También podés tocar los botones.",
+    "voteFailed": "No se guardó el voto. Probá de nuevo."
   },
   "genres": {
     "1": "Acción",

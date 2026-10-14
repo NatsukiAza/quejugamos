@@ -4,7 +4,15 @@
     "locale": "Language"
   },
   "home": {
-    "lead": "Sign in with Steam, open a room, and pick what to play.",
+    "heroTitle": "Pick a game you can all play",
+    "heroLead": "Sign in with Steam, open a room for 2 to 8 people, and see the games you share. Then a wheel or a yes-or-no match chooses for the group.",
+    "stepEnterTitle": "Sign in with Steam",
+    "stepEnterBody": "Your public library joins on its own. If it's private, the room still works and tells you how to open it.",
+    "stepShareTitle": "Share the link",
+    "stepShareBody": "Up to 8 people. The host can also paste a public profile to add that library.",
+    "stepDecideTitle": "Spin or match",
+    "stepDecideBody": "The wheel lands on a cover. The match is yes or no, unanimous or by majority.",
+    "landed": "Landed on",
     "create": "Create room",
     "library": "Your library",
     "empty": "This public library has no games.",
@@ -77,6 +85,7 @@
     "empty": "Nothing to spin with these filters.",
     "allExcluded": "You excluded everything. Put a game back in.",
     "winner": "Landed on",
+    "excludedNotice": "You excluded {name}. It stays out of the next spin.",
     "back": "Back to the room",
     "pool": "In the wheel"
   },
@@ -94,7 +103,9 @@
     "empty": "Nothing to vote on with these filters.",
     "back": "Back to the room",
     "done": "You've voted through this list.",
-    "card": "{current} of {total}"
+    "card": "{current} of {total}",
+    "hint": "Swipe right if you want to play it, or left if you don't. You can use the buttons too.",
+    "voteFailed": "The vote didn't save. Try again."
   },
   "genres": {
     "1": "Action",

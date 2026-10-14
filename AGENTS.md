@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Qué Jugamos
+
+Before changing product behavior, read `docs/README.md` and the document it links for the area you are touching. Those files are the source of truth for closed product decisions. The Next.js block above still applies: this version differs from older App Router docs.

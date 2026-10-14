@@ -46,6 +46,15 @@ export function clampMinOwners(requested: number | null, visible: number): numbe
   return Math.min(visible, Math.max(1, Math.trunc(requested)));
 }
 
+export function narrowToMinOwners(
+  games: SteamListGame[],
+  minOwners: number,
+  loadedMinOwners: number,
+): SteamListGame[] {
+  if (minOwners <= loadedMinOwners) return games;
+  return games.filter((game) => game.owners.length >= minOwners);
+}
+
 export function shortcutMinOwners(
   shortcut: "all" | "allButOne" | "half",
   visible: number,

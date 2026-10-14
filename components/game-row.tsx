@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { GameCover } from "./game-cover";
 
 export function GameRow({
@@ -5,19 +6,24 @@ export function GameRow({
   imageUrl,
   meta,
   detail,
+  className,
+  children,
 }: {
   name: string;
   imageUrl: string | null;
-  meta: string;
+  meta?: string;
   detail?: string;
+  className?: string;
+  children?: ReactNode;
 }) {
   return (
-    <article className="game-row">
+    <article className={className ? `game-row ${className}` : "game-row"}>
       <GameCover src={imageUrl} name={name} />
-      <div>
+      <div className="game-copy">
         <strong>{name}</strong>
-        <p className="stat">{meta}</p>
+        {meta ? <p className="stat">{meta}</p> : null}
         {detail ? <p className="muted">{detail}</p> : null}
+        {children}
       </div>
     </article>
   );

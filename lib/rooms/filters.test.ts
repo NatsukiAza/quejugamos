@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { filterCustomGames, filterSteamGames, clampMinOwners } from "./filters";
+import { filterCustomGames, filterSteamGames, clampMinOwners, narrowToMinOwners } from "./filters";
 import type { SteamListGame } from "./filters";
 
 const pending: SteamListGame = {
@@ -126,5 +126,25 @@ describe("filters", () => {
     expect(clampMinOwners(0, 4)).toBe(1);
     expect(clampMinOwners(9, 4)).toBe(4);
     expect(clampMinOwners(2, 0)).toBe(0);
+  });
+
+  it("narrows a loaded list when the owner minimum goes up", () => {
+    const one = {
+      ...pending,
+      appId: 1,
+      owners: [{ steamId: "a", personaName: "A", playtimeMinutes: 1 }],
+    };
+    const two = {
+      ...pending,
+      appId: 2,
+      owners: [
+        { steamId: "a", personaName: "A", playtimeMinutes: 1 },
+        { steamId: "b", personaName: "B", playtimeMinutes: 1 },
+      ],
+    };
+    const games = [one, two];
+    expect(narrowToMinOwners(games, 2, 1).map((game) => game.appId)).toEqual([2]);
+    expect(narrowToMinOwners(games, 1, 1)).toBe(games);
+    expect(narrowToMinOwners(games, 1, 2)).toBe(games);
   });
 });

@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { refreshMyLibrary } from "@/app/actions";
 import { GameRow } from "@/components/game-row";
+import { LandingStage } from "@/components/landing-stage";
 import { SteamLoginButton } from "@/components/steam-login-button";
 import { formatHours, headerImageUrl } from "@/lib/format";
 import { AppError } from "@/lib/store/redis";
@@ -20,15 +21,43 @@ export async function HomePanel({
 
   return (
     <div className="page stack">
-      {authFailed ? <p className="banner">{t("authFailed")}</p> : null}
-      {!session ? (
-        <>
-          <p className="lead">{t("lead")}</p>
-          <SteamLoginButton returnTo="/" label={t("signIn")} />
-        </>
-      ) : (
-        <LoggedIn steamId={session.steamId} locale={locale} />
-      )}
+      {authFailed ? <p className="banner banner-error">{t("authFailed")}</p> : null}
+      <section className="landing">
+        <div className="landing-hero">
+          <div className="landing-copy">
+            <h1 className="landing-title">{t("heroTitle")}</h1>
+            <p className="landing-lead">{t("heroLead")}</p>
+            {session ? (
+              <form action="/api/rooms" method="post">
+                <button className="button button-action landing-create" type="submit">
+                  {t("create")}
+                </button>
+              </form>
+            ) : (
+              <SteamLoginButton returnTo="/" label={t("signIn")} prominent />
+            )}
+          </div>
+          <LandingStage landedLabel={t("landed")} />
+        </div>
+        <div className="landing-steps">
+          <article className="panel landing-step">
+            <span className="landing-step-index">01</span>
+            <h2 className="landing-step-title">{t("stepEnterTitle")}</h2>
+            <p>{t("stepEnterBody")}</p>
+          </article>
+          <article className="panel landing-step">
+            <span className="landing-step-index">02</span>
+            <h2 className="landing-step-title">{t("stepShareTitle")}</h2>
+            <p>{t("stepShareBody")}</p>
+          </article>
+          <article className="panel landing-step">
+            <span className="landing-step-index">03</span>
+            <h2 className="landing-step-title">{t("stepDecideTitle")}</h2>
+            <p>{t("stepDecideBody")}</p>
+          </article>
+        </div>
+      </section>
+      {session ? <LoggedIn steamId={session.steamId} locale={locale} /> : null}
     </div>
   );
 }
@@ -57,14 +86,9 @@ async function LoggedIn({
 
   return (
     <div className="stack">
-      <form action="/api/rooms" method="post">
-        <button className="button button-action" type="submit">
-          {t("create")}
-        </button>
-      </form>
-      <h1 className="section-title">{t("library")}</h1>
+      <h2 className="section-title">{t("library")}</h2>
       {failure ? (
-        <p className="banner">{t(failure === "redis_unconfigured" ? "unconfigured" : "network")}</p>
+        <p className="banner banner-error">{t(failure === "redis_unconfigured" ? "unconfigured" : "network")}</p>
       ) : null}
       {library?.status === "private" ? (
         <div className="banner stack">
@@ -77,7 +101,7 @@ async function LoggedIn({
         </div>
       ) : null}
       {library?.status === "error" ? (
-        <div className="banner stack">
+        <div className={library.libraryError === "rate_limit" ? "banner stack" : "banner banner-error stack"}>
           <p>{t(library.libraryError === "rate_limit" ? "rateLimit" : library.libraryError === "unconfigured" ? "unconfigured" : "network")}</p>
           <form action={refreshMyLibrary}>
             <button className="button" type="submit">

@@ -38,8 +38,18 @@ async function RouletteContent({
   });
   if (loaded === "unconfigured") {
     const home = await getTranslations("home");
-    return <div className="page banner">{home("unconfigured")}</div>;
+    return (
+      <div className="page">
+        <p className="banner banner-error">{home("unconfigured")}</p>
+      </div>
+    );
   }
-  if (!loaded) return <div className="page banner">{t("notFound")}</div>;
+  if (!loaded) {
+    return (
+      <div className="page">
+        <p className="banner banner-error">{t("notFound")}</p>
+      </div>
+    );
+  }
   return <Roulette code={code} games={loaded.games} filters={loaded.filters} />;
 }

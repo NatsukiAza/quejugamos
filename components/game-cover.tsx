@@ -14,6 +14,6 @@ export function GameCover({ src, name }: { src: string | null; name: string }) {
   return (
     // Store headers are served by Steam's CDN and may 404.
     // eslint-disable-next-line @next/next/no-img-element
-    <img className="cover" src={src} alt="" onError={() => setFailed(true)} />
+    <img className="cover" src={src} alt="" draggable={false} onError={() => setFailed(true)} />
   );
 }
