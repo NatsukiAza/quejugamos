@@ -52,7 +52,7 @@ export function RoomBoard({
   const supersededOwners = useRef(new Set<number>());
   const payloadRef = useRef(payload);
   const filterStateRef = useRef(filterState);
-  const ownersTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const ownersTimer = useRef<number | null>(null);
 
   const [pasteError, setPasteError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
